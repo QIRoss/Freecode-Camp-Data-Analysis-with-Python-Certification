@@ -34,15 +34,29 @@ def calculate_demographic_data(print_data=True):
 
     rich_percentage =  len(min_workers[min_workers['salary'] == '>50K'])/num_min_workers * 100
     # What country has the highest percentage of people that earn >50K?
-    rich_df = df[df['salary'] == '>50K']
-    other = rich_df.groupby(['native-country']).count()[0:1]
-    print(other)
-    highest_earning_country = None
-    highest_earning_country_percentage = None
-
+    countries = df['native-country'].unique()
+    greaterPercentage = 0
+    greaterName = ''
+    for i in range(len(countries)):
+        actual = df[df['native-country'] == countries[i] ]
+        actualPercentage = round(len( actual[actual['salary'] == '>50K'] ) / len(actual) * 100 ,1)
+        if actualPercentage > greaterPercentage:
+            greaterPercentage = actualPercentage
+            greaterName = countries[i]
+    highest_earning_country = greaterName
+    highest_earning_country_percentage = greaterPercentage
     # Identify the most popular occupation for those who earn >50K in India.
-    top_IN_occupation = None
-
+    india_df = df[ df['native-country'] == 'India']
+    india_unique_occupations = india_df['occupation'].unique()
+    mostPopularName = ''
+    mostPopularSize = 0
+    for i in range(len(india_unique_occupations)):
+        actual = india_df[india_df['occupation'] == india_unique_occupations[i]]
+        actualSize = len(actual[actual['salary'] == '>50K'])
+        if actualSize > mostPopularSize:
+            mostPopularSize = actualSize
+            mostPopularName = india_unique_occupations[i]
+    top_IN_occupation = mostPopularName
     # DO NOT MODIFY BELOW THIS LINE
 
     if print_data:
