@@ -6,7 +6,7 @@ register_matplotlib_converters()
 import numpy as np
 
 # I state that somewhere in the middle of the production of this challenge/solution I started looking at the following link
-# https://github.com/freeCodeCamp/boilerplate-page-view-time-series-visualizer/blob/master/time_series_visualizer.py
+# https://github.com/dillonwfletcher/freeCodeCampSolutions/blob/main/pythonProjects/pageViewTimeSeriesVisualizer/time_series_visualizer.py
 # Some of the following code is not mine and some weirdly look like the same but I kinda understand that for the early level of these challenge it's okay
 # Still using it for studying purposes and testing some of it on repl.it
 
@@ -68,7 +68,7 @@ def draw_box_plot():
     sns.boxplot(x=df_box["month"], y=df_box["value"], 
         order=['Jan', 'Feb', "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
         ax = axs[1]).set(xlabel="Month",
-         ylabel= "Page Views")
+        ylabel= "Page Views")
     axs[0].set_title('Year-wise Box Plot (Trend)')
     axs[1].set_title('Month-wise Box Plot (Seasonality)')
     
